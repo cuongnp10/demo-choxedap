@@ -38,7 +38,7 @@ jobs:
       # Build Main Frontend
       - name: Install dependencies (Frontend)
         working-directory: ./frontend
-        run: npm ci
+        run: rm -f package-lock.json && npm install
 
       - name: Build (Frontend)
         working-directory: ./frontend
@@ -49,7 +49,7 @@ jobs:
       # Build Admin Frontend
       - name: Install dependencies (Admin)
         working-directory: ./frontend_admin
-        run: npm ci
+        run: rm -f package-lock.json && npm install
 
       - name: Build (Admin)
         working-directory: ./frontend_admin
