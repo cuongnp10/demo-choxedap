@@ -1,0 +1,133 @@
+/* Reset and Base Styles for Home Page */
+.home-container {
+  align-items: center;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+/* Chatbot Styles */
+.chatbot {
+  align-items: center;
+  background-color: #15803D; /* Primary Forest Green */
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  box-shadow: 0 10px 25px -5px rgba(21, 128, 61, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 50;
+}
+
+.chatbot:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(21, 128, 61, 0.4);
+}
+
+.chatbot:active {
+  transform: scale(0.95);
+}
+
+.chatbot .material-icons {
+  color: #ffffff;
+  font-size: 28px;
+}
+
+/* Chat Window Styles */
+.chat-window {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  width: 360px;
+  height: 500px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-header {
+  background-color: #15803D;
+  color: #ffffff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header span {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.close-chat {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.close-chat:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.chat-body {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: #F8FAFC;
+}
+
+.chat-footer {
+  padding: 16px;
+  background-color: #ffffff;
+  border-top: 1px solid #E2E8F0;
+}
+
+.chat-input {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #F1F5F9;
+  border-radius: 9999px;
+  border: none;
+  outline: none;
+  font-size: 0.875rem;
+  transition: ring 0.2s;
+}
+
+.chat-input:focus {
+  box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.2);
+}
