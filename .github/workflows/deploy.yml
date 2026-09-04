@@ -30,15 +30,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
-          cache-dependency-path: |
-            frontend/package-lock.json
-            frontend_admin/package-lock.json
 
       # Build Main Frontend
       - name: Install dependencies (Frontend)
         working-directory: ./frontend
-        run: rm -f package-lock.json && npm install
+        run: rm -rf package-lock.json node_modules && npm install
 
       - name: Build (Frontend)
         working-directory: ./frontend
@@ -49,7 +45,7 @@ jobs:
       # Build Admin Frontend
       - name: Install dependencies (Admin)
         working-directory: ./frontend_admin
-        run: rm -f package-lock.json && npm install
+        run: rm -rf package-lock.json node_modules && npm install
 
       - name: Build (Admin)
         working-directory: ./frontend_admin
