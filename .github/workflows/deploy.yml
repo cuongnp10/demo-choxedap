@@ -29,12 +29,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       # Build Main Frontend
       - name: Install dependencies (Frontend)
         working-directory: ./frontend
-        run: rm -rf package-lock.json node_modules && npm install
+        run: rm -rf package-lock.json node_modules && npm install --force
 
       - name: Build (Frontend)
         working-directory: ./frontend
@@ -45,7 +45,7 @@ jobs:
       # Build Admin Frontend
       - name: Install dependencies (Admin)
         working-directory: ./frontend_admin
-        run: rm -rf package-lock.json node_modules && npm install
+        run: rm -rf package-lock.json node_modules && npm install --force
 
       - name: Build (Admin)
         working-directory: ./frontend_admin
