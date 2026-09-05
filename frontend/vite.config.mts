@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  base: '/demo-choxedap/',
+    base: '/demo-choxedap/',
     plugins: [react(), tailwindcss()],
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],

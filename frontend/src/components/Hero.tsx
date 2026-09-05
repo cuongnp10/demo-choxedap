@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { assets } from "../lib/assets";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { mockFetch } from "../lib/mockFetch";
 
 type HeroProps = {
   initialQuery?: string;
@@ -33,8 +34,8 @@ export function Hero({ initialQuery = "", onSearch }: HeroProps) {
 
   // Load hero images from system settings (admin-configurable)
   useEffect(() => {
-    const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5243";
-    fetch(`${apiUrl}/metadata/settings`)
+    const apiUrl = import.meta.env.VITE_API_URL || "";
+    mockFetch(`${apiUrl}/metadata/settings`)
       .then(r => r.json())
       .then(data => {
         const settings: any[] = data?.data ?? [];

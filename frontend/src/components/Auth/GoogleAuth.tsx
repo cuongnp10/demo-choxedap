@@ -11,52 +11,29 @@ export function GoogleAuth({ onSuccess }: { onSuccess?: () => void }) {
     const { signInWithGoogle } = useAuth();
     const divRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-
-        if (!clientId) {
-            console.error("Google Client ID is missing in .env.local");
-            return;
+    const handleMockLogin = async () => {
+        try {
+            await signInWithGoogle("MOCK_GOOGLE_CREDENTIAL_DEMO");
+            if (onSuccess) onSuccess();
+        } catch (error) {
+            console.error("Google sign in failed", error);
         }
+    };
 
-        const initializeGoogleSignIn = () => {
-            if (window.google && divRef.current) {
-                window.google.accounts.id.initialize({
-                    client_id: clientId,
-                    callback: async (response: any) => {
-                        try {
-                            await signInWithGoogle(response.credential);
-                            onSuccess?.();
-                        } catch (error) {
-                            console.error("Google sign in failed", error);
-                        }
-                    },
-                });
-
-                window.google.accounts.id.renderButton(divRef.current, {
-                    theme: "outline",
-                    size: "large",
-                    width: divRef.current.offsetWidth,
-                    text: "signin_with",
-                    shape: "rectangular",
-                });
-            }
-        };
-
-        // Check if script is already loaded
-        if (window.google) {
-            initializeGoogleSignIn();
-        } else {
-            // Wait for script to load if it hasn't yet
-            const interval = setInterval(() => {
-                if (window.google) {
-                    initializeGoogleSignIn();
-                    clearInterval(interval);
-                }
-            }, 100);
-            return () => clearInterval(interval);
-        }
-    }, [signInWithGoogle, onSuccess]);
-
-    return <div ref={divRef} className="w-full min-h-[40px] flex justify-center mt-4" />;
+    return (
+        <div className="w-full">
+            <button
+                type="button"
+                onClick={handleMockLogin}
+                className="w-full flex items-center justify-center gap-2 border border-gray-300 rounded-md py-2.5 px-4 bg-white hover:bg-gray-50 transition-colors shadow-sm"
+            >
+                <img 
+                    src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+                    alt="Google" 
+                    className="w-5 h-5"
+                />
+                <span className="text-sm font-medium text-gray-700">Tiếp tục với Google (Demo)</span>
+            </button>
+        </div>
+    );
 }
